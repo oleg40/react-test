@@ -1,0 +1,5 @@
+task.txt
+g-drive-link.txt
+node_modules
+dist
+*.tsbuildinfo
