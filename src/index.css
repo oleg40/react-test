@@ -63,6 +63,16 @@ button {
   border-radius: 10px;
 }
 
+.hint {
+  margin: 0;
+  color: #707579;
+  font-size: 14px;
+}
+
+.hint a {
+  color: #3390ec;
+}
+
 .error {
   margin: 0;
   color: #e53935;

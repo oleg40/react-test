@@ -42,6 +42,12 @@ export function LoginForm({ onLogin }: Props) {
         onChange={(e) => setApiTokenInstance(e.target.value)}
         required
       />
+      <p className="hint">
+        Get your credentials at{' '}
+        <a href="https://console.green-api.com" target="_blank" rel="noreferrer">
+          console.green-api.com
+        </a>
+      </p>
       {error && <p className="error">{error}</p>}
       <button type="submit" disabled={loading}>
         {loading ? 'Checking…' : 'Sign in'}
