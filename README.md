@@ -15,7 +15,7 @@ Other scripts: `npm run build`, `npm test`.
 ## Usage
 
 1. Create and authorize a Telegram instance in the GREEN-API console.
-2. Open the app and enter `apiUrl`, `idInstance` and `apiTokenInstance` from the GREEN-API console.
+2. Open the app and enter `idInstance` and `apiTokenInstance` from the GREEN-API console.
 3. Enter the recipient phone number in international format and create the chat.
 4. Send a message; replies from Telegram appear in the chat.
 

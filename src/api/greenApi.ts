@@ -1,5 +1,4 @@
 export interface Credentials {
-  apiUrl: string
   idInstance: string
   apiTokenInstance: string
 }
@@ -9,10 +8,8 @@ export interface Notification {
   body: unknown
 }
 
-export const DEFAULT_API_URL = 'https://api.green-api.com'
-
 export function buildUrl(creds: Credentials, method: string, suffix = ''): string {
-  const host = creds.apiUrl.replace(/\/+$/, '')
+  const host = `https://${creds.idInstance.slice(0, 4)}.api.green-api.com`
   return `${host}/waInstance${creds.idInstance}/${method}/${creds.apiTokenInstance}${suffix}`
 }
 

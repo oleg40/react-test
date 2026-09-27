@@ -1,7 +1,8 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { deleteNotification, getStateInstance, receiveNotification, sendMessage } from './greenApi'
 
-const creds = { apiUrl: 'https://api.green-api.com', idInstance: '1101', apiTokenInstance: 'token' }
+const BASE = 'https://4100.api.green-api.com/waInstance4100227483'
+const creds = { idInstance: '4100227483', apiTokenInstance: 'token' }
 
 function mockFetch(data: unknown, ok = true) {
   const fn = vi.fn().mockResolvedValue({ ok, status: ok ? 200 : 401, json: () => Promise.resolve(data) })
@@ -16,7 +17,7 @@ describe('greenApi', () => {
     const fetch = mockFetch({ idMessage: 'id1' })
     await expect(sendMessage(creds, '79001234567@c.us', 'hello')).resolves.toEqual({ idMessage: 'id1' })
     const [url, init] = fetch.mock.calls[0]
-    expect(url).toBe('https://api.green-api.com/waInstance1101/sendMessage/token')
+    expect(url).toBe(`${BASE}/sendMessage/token`)
     expect(init.method).toBe('POST')
     expect(JSON.parse(init.body)).toEqual({ chatId: '79001234567@c.us', message: 'hello' })
   })
@@ -24,20 +25,20 @@ describe('greenApi', () => {
   it('receives notification', async () => {
     const fetch = mockFetch(null)
     await expect(receiveNotification(creds)).resolves.toBeNull()
-    expect(fetch.mock.calls[0][0]).toBe('https://api.green-api.com/waInstance1101/receiveNotification/token')
+    expect(fetch.mock.calls[0][0]).toBe(`${BASE}/receiveNotification/token`)
   })
 
   it('deletes notification', async () => {
     const fetch = mockFetch({ result: true })
     await deleteNotification(creds, 42)
-    expect(fetch.mock.calls[0][0]).toBe('https://api.green-api.com/waInstance1101/deleteNotification/token/42')
+    expect(fetch.mock.calls[0][0]).toBe(`${BASE}/deleteNotification/token/42`)
     expect(fetch.mock.calls[0][1].method).toBe('DELETE')
   })
 
-  it('gets instance state from custom host', async () => {
+  it('gets instance state', async () => {
     const fetch = mockFetch({ stateInstance: 'authorized' })
-    await getStateInstance({ ...creds, apiUrl: 'https://4100.api.green-api.com/' })
-    expect(fetch.mock.calls[0][0]).toBe('https://4100.api.green-api.com/waInstance1101/getStateInstance/token')
+    await getStateInstance(creds)
+    expect(fetch.mock.calls[0][0]).toBe(`${BASE}/getStateInstance/token`)
   })
 
   it('throws on http error', async () => {

@@ -1,12 +1,11 @@
 import { FormEvent, useState } from 'react'
-import { Credentials, DEFAULT_API_URL, getStateInstance } from '../api/greenApi'
+import { Credentials, getStateInstance } from '../api/greenApi'
 
 interface Props {
   onLogin: (creds: Credentials) => void
 }
 
 export function LoginForm({ onLogin }: Props) {
-  const [apiUrl, setApiUrl] = useState(DEFAULT_API_URL)
   const [idInstance, setIdInstance] = useState('')
   const [apiTokenInstance, setApiTokenInstance] = useState('')
   const [error, setError] = useState('')
@@ -14,7 +13,7 @@ export function LoginForm({ onLogin }: Props) {
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault()
-    const creds = { apiUrl: apiUrl.trim(), idInstance: idInstance.trim(), apiTokenInstance: apiTokenInstance.trim() }
+    const creds = { idInstance: idInstance.trim(), apiTokenInstance: apiTokenInstance.trim() }
     setLoading(true)
     setError('')
     try {
@@ -25,7 +24,7 @@ export function LoginForm({ onLogin }: Props) {
         setError(`Инстанс не готов: ${stateInstance}`)
       }
     } catch {
-      setError('Неверные учетные данные или apiUrl')
+      setError('Неверные учетные данные')
     } finally {
       setLoading(false)
     }
@@ -34,7 +33,6 @@ export function LoginForm({ onLogin }: Props) {
   return (
     <form className="card" onSubmit={handleSubmit}>
       <h1>Вход в GREEN-API</h1>
-      <input placeholder="apiUrl" value={apiUrl} onChange={(e) => setApiUrl(e.target.value)} required />
       <input placeholder="idInstance" value={idInstance} onChange={(e) => setIdInstance(e.target.value)} required />
       <input
         placeholder="apiTokenInstance"
