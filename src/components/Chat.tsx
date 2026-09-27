@@ -13,7 +13,7 @@ interface Props {
 }
 
 function formatTime(timestamp: number) {
-  return new Date(timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+  return new Date(timestamp).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })
 }
 
 export function Chat({ creds, chatId, messages, onMessage, onNewChat, onLogout }: Props) {
@@ -38,7 +38,7 @@ export function Chat({ creds, chatId, messages, onMessage, onNewChat, onLogout }
       onMessage({ id: idMessage, chatId, text: message, timestamp: Date.now(), outgoing: true })
       setText('')
     } catch {
-      alert('Failed to send message')
+      alert('Не удалось отправить сообщение')
     } finally {
       setSending(false)
     }
@@ -61,10 +61,10 @@ export function Chat({ creds, chatId, messages, onMessage, onNewChat, onLogout }
       <header className="chat-header">
         <span className="chat-title">+{chatId.replace('@c.us', '')}</span>
         <button className="link" onClick={onNewChat}>
-          New chat
+          Новый чат
         </button>
         <button className="link" onClick={onLogout}>
-          Log out
+          Выйти
         </button>
       </header>
       <div className="messages" ref={listRef}>
@@ -78,13 +78,13 @@ export function Chat({ creds, chatId, messages, onMessage, onNewChat, onLogout }
       <form className="composer" onSubmit={handleSubmit}>
         <textarea
           rows={1}
-          placeholder="Message"
+          placeholder="Сообщение"
           value={text}
           onChange={(e) => setText(e.target.value)}
           onKeyDown={handleKeyDown}
         />
         <button type="submit" disabled={sending || !text.trim()}>
-          Send
+          Отправить
         </button>
       </form>
     </div>

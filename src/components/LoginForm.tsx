@@ -22,10 +22,10 @@ export function LoginForm({ onLogin }: Props) {
       if (stateInstance === 'authorized') {
         onLogin(creds)
       } else {
-        setError(`Instance is not ready: ${stateInstance}`)
+        setError(`Инстанс не готов: ${stateInstance}`)
       }
     } catch {
-      setError('Invalid credentials or API URL')
+      setError('Неверные учетные данные или apiUrl')
     } finally {
       setLoading(false)
     }
@@ -33,7 +33,7 @@ export function LoginForm({ onLogin }: Props) {
 
   return (
     <form className="card" onSubmit={handleSubmit}>
-      <h1>Sign in to GREEN-API</h1>
+      <h1>Вход в GREEN-API</h1>
       <input placeholder="apiUrl" value={apiUrl} onChange={(e) => setApiUrl(e.target.value)} required />
       <input placeholder="idInstance" value={idInstance} onChange={(e) => setIdInstance(e.target.value)} required />
       <input
@@ -43,14 +43,14 @@ export function LoginForm({ onLogin }: Props) {
         required
       />
       <p className="hint">
-        Get your credentials at{' '}
+        Учетные данные можно получить в{' '}
         <a href="https://console.green-api.com" target="_blank" rel="noreferrer">
           console.green-api.com
         </a>
       </p>
       {error && <p className="error">{error}</p>}
       <button type="submit" disabled={loading}>
-        {loading ? 'Checking…' : 'Sign in'}
+        {loading ? 'Проверка…' : 'Войти'}
       </button>
     </form>
   )

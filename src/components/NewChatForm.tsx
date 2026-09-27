@@ -14,7 +14,7 @@ export function NewChatForm({ onCreate, onLogout }: Props) {
     event.preventDefault()
     const chatId = phoneToChatId(phone)
     if (!chatId) {
-      setError('Enter a phone number in international format, e.g. 79001234567')
+      setError('Введите номер в международном формате, например 79001234567')
       return
     }
     onCreate(chatId)
@@ -22,9 +22,9 @@ export function NewChatForm({ onCreate, onLogout }: Props) {
 
   return (
     <form className="card" onSubmit={handleSubmit}>
-      <h1>New chat</h1>
+      <h1>Новый чат</h1>
       <input
-        placeholder="Recipient phone, e.g. 79001234567"
+        placeholder="Номер получателя, например 79001234567"
         value={phone}
         onChange={(e) => {
           setPhone(e.target.value)
@@ -33,9 +33,9 @@ export function NewChatForm({ onCreate, onLogout }: Props) {
         required
       />
       {error && <p className="error">{error}</p>}
-      <button type="submit">Create chat</button>
+      <button type="submit">Создать чат</button>
       <button type="button" className="link" onClick={onLogout}>
-        Log out
+        Выйти
       </button>
     </form>
   )
