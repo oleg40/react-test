@@ -1,0 +1,184 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #8fb07b linear-gradient(135deg, #a4c38b 0%, #d4d98f 50%, #8fbf9b 100%);
+  color: #000;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 360px;
+  padding: 32px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card h1 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.card input {
+  padding: 12px;
+  font: inherit;
+  border: 1px solid #dadce0;
+  border-radius: 10px;
+  outline: none;
+}
+
+.card input:focus {
+  border-color: #3390ec;
+}
+
+.card button[type='submit'] {
+  padding: 12px;
+  color: #fff;
+  background: #3390ec;
+  border: none;
+  border-radius: 10px;
+}
+
+.hint {
+  margin: 0;
+  color: #707579;
+  font-size: 14px;
+}
+
+.hint a {
+  color: #3390ec;
+}
+
+.error {
+  margin: 0;
+  color: #e53935;
+  font-size: 14px;
+}
+
+.link {
+  color: #3390ec;
+  background: none;
+  border: none;
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 720px;
+  height: 100%;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.chat-title {
+  flex: 1;
+  font-weight: 600;
+}
+
+.messages {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.bubble {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  max-width: 70%;
+  padding: 6px 10px;
+  border-radius: 12px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+}
+
+.bubble.incoming {
+  align-self: flex-start;
+  background: #fff;
+  border-bottom-left-radius: 4px;
+}
+
+.bubble.outgoing {
+  align-self: flex-end;
+  background: #eeffde;
+  border-bottom-right-radius: 4px;
+}
+
+.bubble .text {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.bubble .time {
+  color: #8a8a8a;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.bubble.outgoing .time {
+  color: #4fae4e;
+}
+
+.composer {
+  display: flex;
+  gap: 8px;
+  padding: 8px 16px 16px;
+}
+
+.composer textarea {
+  flex: 1;
+  padding: 12px 16px;
+  font: inherit;
+  border: none;
+  border-radius: 12px;
+  outline: none;
+  resize: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.composer button {
+  padding: 0 20px;
+  color: #fff;
+  background: #3390ec;
+  border: none;
+  border-radius: 12px;
+}
+
+.composer button:disabled {
+  background: #a0c8f0;
+  cursor: default;
+}
