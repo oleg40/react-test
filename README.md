@@ -1,35 +1,36 @@
-# GREEN-API Telegram Chat
+# GREEN-API Telegram чат
 
-Minimal Telegram Web-style chat for sending and receiving text messages via
-[GREEN-API for Telegram](https://green-api.com/telegram).
+Минимальный чат в стиле Telegram Web для отправки и получения текстовых сообщений через
+[GREEN-API для Telegram](https://green-api.com/telegram).
 
-## Setup
+## Запуск
 
 ```bash
 npm install
 npm run dev
 ```
 
-Other scripts: `npm run build`, `npm test`.
+Другие команды: `npm run build`, `npm test`.
 
-## Usage
+## Использование
 
-You need two Telegram accounts: a sender linked to GREEN-API and a recipient who replies.
+Нужны два аккаунта Telegram: отправитель, подключенный к GREEN-API, и получатель, который отвечает.
 
-1. Register at [console.green-api.com](https://console.green-api.com) and choose **Create Telegram**
-   (not "Create an instance", which is WhatsApp). The free Developer plan is enough.
-2. Authorize the instance with the sender's phone number (login code, 2FA password if set)
-   and wait for status **Authorized**.
-3. In the instance settings, set **Receive webhooks on incoming messages and files** to **Yes**
-   and keep **Webhook Url** empty. Without this, replies never reach the app. Settings apply in about a minute.
-4. Open the app and enter `idInstance` and `apiTokenInstance` from the console.
-5. Enter the recipient's phone number in international format and create the chat.
-6. Send a message; replies from Telegram appear in the chat within a few seconds.
+1. Зарегистрируйтесь в [console.green-api.com](https://console.green-api.com) и выберите **Create Telegram**
+   (не "Create an instance" — это WhatsApp). Бесплатного тарифа Developer достаточно.
+2. Авторизуйте инстанс по номеру телефона отправителя (код входа, пароль 2FA, если включен)
+   и дождитесь статуса **Authorized**.
+3. В настройках инстанса включите **Receive webhooks on incoming messages and files** (**Yes**)
+   и оставьте **Webhook Url** пустым. Без этого ответы не дойдут до приложения. Настройки применяются примерно
+   через минуту.
+4. Откройте приложение и введите `idInstance` и `apiTokenInstance` из консоли.
+5. Введите номер получателя в международном формате и создайте чат.
+6. Отправьте сообщение — ответы из Telegram появятся в чате через несколько секунд.
 
-Messages are sent via `SendMessage` and received by polling `ReceiveNotification` / `DeleteNotification`.
+Сообщения отправляются методом `SendMessage`, а принимаются опросом `ReceiveNotification` / `DeleteNotification`.
 
-## Notes
+## Примечания
 
-- Messages are sent from the Telegram account linked to the instance.
-- `apiTokenInstance` gives full access to that account and is stored in the browser's localStorage.
-- The app drains the instance notification queue; notifications from other chats are discarded.
+- Сообщения отправляются от имени аккаунта Telegram, подключенного к инстансу.
+- `apiTokenInstance` дает полный доступ к этому аккаунту и хранится в localStorage браузера.
+- Приложение очищает очередь уведомлений инстанса; уведомления из других чатов удаляются.
